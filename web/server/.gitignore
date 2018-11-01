@@ -1,0 +1,4 @@
+#analysis temporary files
+*.csv
+*.xes
+*.json

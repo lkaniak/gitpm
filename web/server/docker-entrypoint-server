@@ -1,0 +1,6 @@
+#!/bin/bash
+# this file controls the scripts executed at the server startup.
+sleep 15s &&
+python3 manage.py makemigrations gitpm &&
+python3 manage.py migrate &&
+python3 manage.py runserver 0.0.0.0:8000

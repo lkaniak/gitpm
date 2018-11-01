@@ -1,0 +1,75 @@
+version: '3'
+services:
+  server:
+    environment:
+      SERVER_ENV: ${SERVER_ENV}
+      DB_AUTH_SOURCE: ${DB_AUTH_SOURCE}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PORT: ${DB_PORT}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_ENGINE: ${DB_ENGINE}
+      GITAUTH: ${GITAUTH}
+      GITHUB_APIURL: ${GITHUB_APIURL}
+      TEMPDIR_PATH: ${TEMPDIR_PATH}
+      PROMAPI_PATH: ${PROMAPI_PATH}
+    build:
+      context: ${WORKDIR_SERVER}
+    container_name: server
+    networks:
+      - gitpm
+    depends_on:
+      - "mongo"
+    ports:
+      - 8081:8000
+    volumes:
+      - ${WORKDIR_SERVER}:/gitpm/server
+    command: /bin/bash
+    tty: true
+    stdin_open: true
+
+  client:
+    build:
+      context: ${WORKDIR_CLIENT}/..
+    container_name: client
+    environment:
+      VUE_APP_TITLE: ${VUE_APP_TITLE}
+      API_URL: ${API_URL}
+    networks:
+      - gitpm
+    ports:
+      - 8082:8080
+      - 4200:4200
+    volumes:
+      - ${WORKDIR_CLIENT}:/usr/share/nginx/html/src
+
+  mongo:
+    image: mongo:3.6.8
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    command: --smallfiles
+    # volumes:
+    #   - ./database/data:/etc/mongo
+    networks:
+      - gitpm
+
+  mongo-express:
+    image: mongo-express
+    depends_on:
+      - "mongo"
+    restart: always
+    ports:
+      - 8083:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    networks:
+      - gitpm
+
+networks:
+  gitpm:
+    driver: bridge
