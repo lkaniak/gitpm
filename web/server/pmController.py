@@ -26,7 +26,7 @@ def requestRepoFromGithub(**kwargs):
 
 #E1: get the commits
 def getCommits(url):
-    '''commits controller caller'''
+    '''commits controller caller (local version)'''
     mirrorUrl = list(reversed(url.split('/')))
     repo = mirrorUrl.pop(0)
     repoOnwer = mirrorUrl.pop(0)

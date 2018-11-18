@@ -53,6 +53,7 @@ export default {
       loading: false,
       valid: false,
       repositoryURL: '',
+      alertStatus: '',
       alertMessage: '',
       errors: [],
       commits: {},

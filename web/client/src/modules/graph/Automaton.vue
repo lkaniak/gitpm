@@ -34,7 +34,18 @@ export default {
   created() {
     this.$nextTick(() => {
       const parsedData = vis.network.convertDot(this.automatonData);
+      Object.keys(parsedData.nodes).forEach((key) => {
 
+        if (parsedData.nodes[key].shape == "doublecircle") {
+          parsedData.nodes[key].color = "red";
+        }
+
+        if (parsedData.nodes[key].id == "initial") {
+          parsedData.nodes[key].color = "green";
+          parsedData.nodes[key].shape = "circle";
+        }
+
+      });
       this.data = {
         nodes: parsedData.nodes,
         edges: parsedData.edges,
@@ -51,7 +62,18 @@ export default {
   watch: {
     automatonData() {
       const parsedData = vis.network.convertDot(this.automatonData);
+      Object.keys(parsedData.nodes).forEach((key) => {
 
+        if (parsedData.nodes[key].shape == "doublecircle") {
+          parsedData.nodes[key].color = "red";
+        }
+
+        if (parsedData.nodes[key].id == "initial") {
+          parsedData.nodes[key].color = "green";
+          parsedData.nodes[key].shape = "circle";
+        }
+
+      });
       this.data = {
         nodes: parsedData.nodes,
         edges: parsedData.edges,

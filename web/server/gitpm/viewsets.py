@@ -68,6 +68,8 @@ class GitRepositoryViewSet(viewsets.ModelViewSet):
   def get_commits(self, request):
     mirrorUrl = list(reversed(request.data['url'].split('/')))
     repo = mirrorUrl.pop(0)
+    if repo == '':
+      repo = mirrorUrl.pop(0)
     repoOnwer = mirrorUrl.pop(0)
     commits = get_commits_from_db(repo, repoOnwer)
     if commits:
@@ -145,6 +147,8 @@ class EventLogViewSet(viewsets.ModelViewSet):
       warnings.append(nameValidation['message'])
     mirrorUrl = list(reversed(request.data['url'].split('/')))
     repo = mirrorUrl.pop(0)
+    if repo == '':
+      repo = mirrorUrl.pop(0)
     repoOnwer = mirrorUrl.pop(0)
     commits = get_commits_from_db(repo, repoOnwer)
     if not commits:
