@@ -15,8 +15,7 @@
       "~/*": ["./*"],
       // "@styles/*": ["./styles/*"],
       "~core/*": ["./core/*"],
-      "~components/*": ["./core/components/*"],
-      "~types/*": ["./core/types/*"],
+      "~shared/*": ["./shared/*"],
       "~layout/*": ["./layout/*"],
     }
   },

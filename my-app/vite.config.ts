@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import { resolve } from "path";
 import solidPlugin from "vite-plugin-solid";
 import suidPlugin from "@suid/vite-plugin";
 import tsconfigPaths from 'vite-tsconfig-paths';
