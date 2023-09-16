@@ -1,13 +1,14 @@
-import SettingsApplications from "@suid/icons-material/SettingsApplications";
+import Settings from "@suid/icons-material/Settings";
 import { IconButton } from "@suid/material";
-import OptionsDrawer from "./drawer"
+import OptionsDrawer, { toggleDrawerOptions } from "./drawer"
 
 export default function Options() {
+
   return (
     <>
       <OptionsDrawer />
-      <IconButton color="secondary" aria-label="settings">
-        <SettingsApplications />
+      <IconButton color="secondary" aria-label="settings" onClick={() => toggleDrawerOptions}>
+        <Settings />
       </IconButton>
     </>
   );

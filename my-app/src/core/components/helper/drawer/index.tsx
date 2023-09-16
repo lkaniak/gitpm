@@ -12,19 +12,19 @@ import {
 import { DrawerProps } from "@suid/material/Drawer";
 import { toggleDrawerHOC, DrawerHOCstate, DrawerHOC } from "~/shared/components/Drawer";
 
+export const toggleDrawerHelp = () => toggleDrawerHOC("help", DrawerHOCstate["help"], DrawerHOCstate);
 
 export default function HelperDrawer(props:DrawerProps) {
 
   const anchorPos = 'bottom'
 
-  const toggleDrawer = () => toggleDrawerHOC(anchorPos, DrawerHOCstate[anchorPos], DrawerHOCstate)
 
   const list = () => (
     <Box
       sx={{ width: "auto" }}
       role="presentation"
-      onClick={toggleDrawer}
-      onKeyDown={toggleDrawer}
+      onClick={toggleDrawerHelp}
+      onKeyDown={toggleDrawerHelp}
     >
       <List>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
@@ -56,10 +56,11 @@ export default function HelperDrawer(props:DrawerProps) {
 
   return (
     <DrawerHOC
+      drawer="help"
       anchor={anchorPos}
       open={DrawerHOCstate[anchorPos]}
       sx={{ zIndex: 9999 }}
-      onClose={toggleDrawer}
+      onClose={toggleDrawerHelp}
     >
       {list()}
     </DrawerHOC>

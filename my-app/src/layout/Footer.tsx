@@ -1,5 +1,6 @@
 import { Button } from "@suid/material";
+import Header from "./Header";
 
 export default function Footer() {
-  return <Button variant="contained" color="error">Footer</Button>;
+  return <Header />;
 }

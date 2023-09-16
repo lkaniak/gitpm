@@ -1,51 +1,42 @@
-import MailIcon from "@suid/icons-material/Mail";
-import InboxIcon from "@suid/icons-material/MoveToInbox";
 import {
-  Box,
-  Button,
-  Divider,
   Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
 } from "@suid/material";
 
 import { createMutable } from "solid-js/store";
 import { FlowComponent, FlowProps } from "solid-js";
 import { DrawerProps } from "@suid/material/Drawer";
 
-export type DrawerCompProps = DrawerProps & FlowProps;
-export type DrawerAnchor = NonNullable<DrawerProps["anchor"]>;
+type AppDrawers = { drawer: "options" | "help" };
+
+export type DrawerCompProps = DrawerProps & FlowProps & AppDrawers;
+export type DrawersStates = NonNullable<AppDrawers["drawer"]>;
 
 export const toggleDrawerHOC =
-  (anchor: DrawerAnchor, open: boolean, state: { [K in DrawerAnchor]: boolean; }) => (event: MouseEvent | KeyboardEvent) => {
+  (drawer: DrawersStates, open: boolean, state: { [K in DrawersStates]: boolean; }) => (event: MouseEvent | KeyboardEvent) => {
+    console.log('\n#############teste');
     if (event.type === "keydown") {
       const keyboardEvent = event as KeyboardEvent;
       if (keyboardEvent.key === "Tab" || keyboardEvent.key === "Shift")
         return;
     }
-    state[anchor] = open;
+    state[drawer] = open;
   };
 
 export const DrawerHOCstate = createMutable<{
-    [K in DrawerAnchor]: boolean;
+    [K in DrawersStates]: boolean;
   }>({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
+    options: false,
+    help: false,
   });
 
 export const DrawerHOC: FlowComponent<DrawerCompProps> = (props) => {
 
   return (
     <Drawer
-      anchor="bottom"
-      open={DrawerHOCstate[props.anchor]}
+      anchor={props.anchor ?? "bottom"}
+      open={DrawerHOCstate[props.drawer]}
       sx={{ zIndex: 9999 }}
-      onClose={toggleDrawerHOC(props.anchor, false, DrawerHOCstate)}
+      onClose={toggleDrawerHOC(props.drawer, false, DrawerHOCstate)}
     >
       {props.children}
     </Drawer>
