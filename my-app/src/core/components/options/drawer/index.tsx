@@ -12,12 +12,11 @@ import {
 import { DrawerProps } from "@suid/material/Drawer/DrawerProps";
 import { toggleDrawerHOC, DrawerHOCstate, DrawerHOC } from "~/shared/components/Drawer";
 
-export const toggleDrawerOptions = () => toggleDrawerHOC("options", DrawerHOCstate["options"], DrawerHOCstate);
+export const toggleDrawerOptions = (e) => toggleDrawerHOC("options", !DrawerHOCstate["options"], DrawerHOCstate)(e);
 
 export default function OptionsDrawer(props:DrawerProps) {
 
   const anchorPos = 'left'
-
 
   const list = () => (
     <Box
@@ -58,7 +57,7 @@ export default function OptionsDrawer(props:DrawerProps) {
     <DrawerHOC
       drawer="options"
       anchor={anchorPos}
-      open={DrawerHOCstate[anchorPos]}
+      open={DrawerHOCstate["options"]}
       sx={{ zIndex: 9999 }}
       onClose={toggleDrawerOptions}
     >

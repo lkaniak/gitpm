@@ -44,7 +44,7 @@ export default function RepoSearch() {
   return (
     <>
       <TextField
-        label="With normal TextField"
+        label="Repositorio"
         error={error().length > 0}
         helperText={error()}
         id="outlined-start-adornment"

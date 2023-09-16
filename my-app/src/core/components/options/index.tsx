@@ -7,7 +7,7 @@ export default function Options() {
   return (
     <>
       <OptionsDrawer />
-      <IconButton color="secondary" aria-label="settings" onClick={() => toggleDrawerOptions}>
+      <IconButton color="secondary" aria-label="settings" onClick={(e) => toggleDrawerOptions(e)}>
         <Settings />
       </IconButton>
     </>

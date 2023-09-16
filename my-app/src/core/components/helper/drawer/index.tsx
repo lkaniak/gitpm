@@ -12,7 +12,7 @@ import {
 import { DrawerProps } from "@suid/material/Drawer";
 import { toggleDrawerHOC, DrawerHOCstate, DrawerHOC } from "~/shared/components/Drawer";
 
-export const toggleDrawerHelp = () => toggleDrawerHOC("help", DrawerHOCstate["help"], DrawerHOCstate);
+export const toggleDrawerHelp = (e) => toggleDrawerHOC("help", !DrawerHOCstate["help"], DrawerHOCstate)(e);
 
 export default function HelperDrawer(props:DrawerProps) {
 
@@ -58,7 +58,7 @@ export default function HelperDrawer(props:DrawerProps) {
     <DrawerHOC
       drawer="help"
       anchor={anchorPos}
-      open={DrawerHOCstate[anchorPos]}
+      open={DrawerHOCstate["options"]}
       sx={{ zIndex: 9999 }}
       onClose={toggleDrawerHelp}
     >

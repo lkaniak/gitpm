@@ -6,7 +6,7 @@ export default function Helper() {
   return (
     <>
       <HelperDrawer />
-      <IconButton color="secondary" aria-label="help" onClick={() => toggleDrawerHelp}>
+      <IconButton color="secondary" aria-label="help" onClick={(e) => toggleDrawerHelp(e)}>
         <HelpOutline />
       </IconButton>
     </>

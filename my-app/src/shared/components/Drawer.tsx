@@ -13,7 +13,6 @@ export type DrawersStates = NonNullable<AppDrawers["drawer"]>;
 
 export const toggleDrawerHOC =
   (drawer: DrawersStates, open: boolean, state: { [K in DrawersStates]: boolean; }) => (event: MouseEvent | KeyboardEvent) => {
-    console.log('\n#############teste');
     if (event.type === "keydown") {
       const keyboardEvent = event as KeyboardEvent;
       if (keyboardEvent.key === "Tab" || keyboardEvent.key === "Shift")
