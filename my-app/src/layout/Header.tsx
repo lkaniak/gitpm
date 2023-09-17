@@ -3,6 +3,7 @@ import {
   Box,
   Toolbar,
   Typography,
+  Grid,
 } from "@suid/material";
 
 import Export from "~/core/components/export";
@@ -15,12 +16,14 @@ export default function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Options />
           <Typography variant="h6" component="div" sx={{ width: 75 }}>
             Gitpm
           </Typography>
-          <RepoSearch />
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
+            <RepoSearch />
+          </Box>
           <Export />
+          <Options />
           <Helper />
         </Toolbar>
       </AppBar>

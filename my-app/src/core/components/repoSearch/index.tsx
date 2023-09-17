@@ -44,18 +44,16 @@ export default function RepoSearch() {
   return (
     <>
       <TextField
+        id="repositorio-input"
         label="Repositorio"
+        size="small"
         error={error().length > 0}
         helperText={error()}
-        id="outlined-start-adornment"
         sx={{
-          m: 1,
-          width: "25ch",
+          width: "50ch",
         }}
         value={input()}
-        onChange={(event, value) => {
-          setInput(value);
-        }}
+        onChange={(event, value) => setInput(value)}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -63,16 +61,16 @@ export default function RepoSearch() {
             </InputAdornment>
           ),
           endAdornment: (
-            input()
-              ? (<InputAdornment position="end">
-                {loading()
-                  ? <CircularProgress />
-                  : (<IconButton onClick={() => setInput("")}>
+            <InputAdornment position="end">
+              {!input()
+              ? null
+              : (loading()
+                ? <CircularProgress />
+                :  (<IconButton onClick={() => setInput("")}>
                       <Clear />
                     </IconButton>)
-                }
-                </InputAdornment>)
-              : (<></>)
+                )}
+            </InputAdornment>
           ),
         }}
       />
